@@ -7,6 +7,8 @@ package farmacia_olimpo_p2_prc4.formularios;
 
 import farmacia_olimpo_p2_prc4.clases.Clientes;
 import farmacia_olimpo_p2_prc4.clases.Productos;
+import java.awt.Image;
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -16,22 +18,30 @@ import javax.swing.table.TableModel;
  * @author jarvi
  */
 public class frmMantenimientoProductos extends javax.swing.JFrame {
+
     //Definimos instancias 
     Productos pro = new Productos();
     DefaultTableModel modelo = new DefaultTableModel();
-    
+
     public frmMantenimientoProductos() {
         //Llamamos a la clases CargarDatos, para que nos traiga la info de la base a la tabla de la vista 
         initComponents();
         CargarDatosLocal();
+        setIconImage(getIconImage());
     }
 
-    
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/ICONO FARMACIA EL OLIMPO.png"));
+
+        return retValue;
+    }
+
     public void CargarDatosLocal() {
         //Inicializamos 
         tblMantenimientoEmpleados.setModel(pro.CargarDatos());
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -57,9 +67,6 @@ public class frmMantenimientoProductos extends javax.swing.JFrame {
         btnRegresar = new javax.swing.JPanel();
         Regresar = new javax.swing.JLabel();
         lblDerecho = new javax.swing.JLabel();
-        lblBuscartxt = new javax.swing.JLabel();
-        txtBuscar = new javax.swing.JTextField();
-        spBuscar = new javax.swing.JSeparator();
         lblNombre = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         spNombre = new javax.swing.JSeparator();
@@ -72,12 +79,11 @@ public class frmMantenimientoProductos extends javax.swing.JFrame {
         lblDescripcion = new javax.swing.JLabel();
         txtDescripcion = new javax.swing.JTextField();
         spDescripcion = new javax.swing.JSeparator();
-        btnBuscar = new javax.swing.JPanel();
-        lblBuscar = new javax.swing.JLabel();
         txtid = new javax.swing.JTextField();
         spTelefono1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Mantenimineto Productos");
         setLocation(new java.awt.Point(500, 250));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -299,28 +305,6 @@ public class frmMantenimientoProductos extends javax.swing.JFrame {
         jPanel1.add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
         jPanel1.add(lblDerecho, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 0, 20, 820));
 
-        lblBuscartxt.setBackground(new java.awt.Color(102, 102, 102));
-        lblBuscartxt.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
-        lblBuscartxt.setForeground(new java.awt.Color(102, 102, 102));
-        lblBuscartxt.setText("Buscar");
-        jPanel1.add(lblBuscartxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 150, -1));
-
-        txtBuscar.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
-        txtBuscar.setForeground(new java.awt.Color(153, 153, 153));
-        txtBuscar.setBorder(null);
-        txtBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                txtBuscarMousePressed(evt);
-            }
-        });
-        txtBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtBuscarActionPerformed(evt);
-            }
-        });
-        jPanel1.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 310, 30));
-        jPanel1.add(spBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 320, 10));
-
         lblNombre.setBackground(new java.awt.Color(102, 102, 102));
         lblNombre.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
         lblNombre.setForeground(new java.awt.Color(102, 102, 102));
@@ -394,37 +378,6 @@ public class frmMantenimientoProductos extends javax.swing.JFrame {
         jPanel1.add(txtDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 230, 430, 30));
         jPanel1.add(spDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 260, 440, 10));
 
-        btnBuscar.setBackground(new java.awt.Color(0, 102, 255));
-
-        lblBuscar.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
-        lblBuscar.setForeground(new java.awt.Color(255, 255, 255));
-        lblBuscar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblBuscar.setText("Buscar");
-        lblBuscar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        lblBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblBuscarMouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout btnBuscarLayout = new javax.swing.GroupLayout(btnBuscar);
-        btnBuscar.setLayout(btnBuscarLayout);
-        btnBuscarLayout.setHorizontalGroup(
-            btnBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btnBuscarLayout.createSequentialGroup()
-                .addComponent(lblBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 1, Short.MAX_VALUE))
-        );
-        btnBuscarLayout.setVerticalGroup(
-            btnBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btnBuscarLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblBuscar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 170, 90, -1));
-
         txtid.setBackground(new java.awt.Color(255, 255, 255));
         txtid.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
         txtid.setForeground(new java.awt.Color(0, 0, 0));
@@ -453,21 +406,21 @@ public class frmMantenimientoProductos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void lblLimpiarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLimpiarMouseClicked
-        txtBuscar.setText("");
+        
         txtNombre.setText("");
         txtPrecio.setText("");
         txtStock.setText("");
         txtDescripcion.setText("");
-       
+
     }//GEN-LAST:event_lblLimpiarMouseClicked
 
     private void btnLimpiarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimpiarMouseClicked
-        txtBuscar.setText("");
+        
         txtNombre.setText("");
         txtPrecio.setText("");
         txtStock.setText("");
         txtDescripcion.setText("");
-       
+
 
     }//GEN-LAST:event_btnLimpiarMouseClicked
 
@@ -477,14 +430,6 @@ public class frmMantenimientoProductos extends javax.swing.JFrame {
         newframe.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnRegresarMouseClicked
-
-    private void txtBuscarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtBuscarMousePressed
-
-    }//GEN-LAST:event_txtBuscarMousePressed
-
-    private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtBuscarActionPerformed
 
     private void txtNombreMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNombreMousePressed
 
@@ -513,7 +458,7 @@ public class frmMantenimientoProductos extends javax.swing.JFrame {
     }//GEN-LAST:event_RegresarMouseClicked
 
     private void tblMantenimientoEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMantenimientoEmpleadosMouseClicked
-       int i = tblMantenimientoEmpleados.getSelectedRow();
+        int i = tblMantenimientoEmpleados.getSelectedRow();
         TableModel model = tblMantenimientoEmpleados.getModel();
         this.txtid.enable(false);
         this.txtid.setText(model.getValueAt(i, 0).toString());
@@ -521,7 +466,7 @@ public class frmMantenimientoProductos extends javax.swing.JFrame {
         this.txtPrecio.setText(model.getValueAt(i, 2).toString());
         this.txtStock.setText(model.getValueAt(i, 3).toString());
         this.txtDescripcion.setText(model.getValueAt(i, 4).toString());
-       
+
     }//GEN-LAST:event_tblMantenimientoEmpleadosMouseClicked
 
     private void txtidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidActionPerformed
@@ -545,7 +490,7 @@ public class frmMantenimientoProductos extends javax.swing.JFrame {
     }//GEN-LAST:event_lblModificar3MouseClicked
 
     private void lblModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblModificarMouseClicked
-         String resultado = null;
+        String resultado = null;
         resultado = pro.ModificarDatos(
                 Integer.parseInt(txtid.getText()),
                 txtNombre.getText(),
@@ -555,10 +500,6 @@ public class frmMantenimientoProductos extends javax.swing.JFrame {
         CargarDatosLocal();
         JOptionPane.showMessageDialog(null, resultado);
     }//GEN-LAST:event_lblModificarMouseClicked
-
-    private void lblBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBuscarMouseClicked
-       
-    }//GEN-LAST:event_lblBuscarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -596,7 +537,6 @@ public class frmMantenimientoProductos extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Regresar;
     private javax.swing.JPanel btnAgregar;
-    private javax.swing.JPanel btnBuscar;
     private javax.swing.JPanel btnEliminar2;
     private javax.swing.JPanel btnLimpiar;
     private javax.swing.JPanel btnModificar;
@@ -604,8 +544,6 @@ public class frmMantenimientoProductos extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAgregar1;
-    private javax.swing.JLabel lblBuscar;
-    private javax.swing.JLabel lblBuscartxt;
     private javax.swing.JLabel lblDerecho;
     private javax.swing.JLabel lblDescripcion;
     private javax.swing.JLabel lblEnEstaVentana;
@@ -616,14 +554,12 @@ public class frmMantenimientoProductos extends javax.swing.JFrame {
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblPrecio;
     private javax.swing.JLabel lblStock;
-    private javax.swing.JSeparator spBuscar;
     private javax.swing.JSeparator spDescripcion;
     private javax.swing.JSeparator spNombre;
     private javax.swing.JSeparator spPrecio;
     private javax.swing.JSeparator spStock;
     private javax.swing.JSeparator spTelefono1;
     private javax.swing.JTable tblMantenimientoEmpleados;
-    private javax.swing.JTextField txtBuscar;
     private javax.swing.JTextField txtDescripcion;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtPrecio;

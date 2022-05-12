@@ -2,6 +2,8 @@ package farmacia_olimpo_p2_prc4.formularios;
 
 import farmacia_olimpo_p2_prc4.clases.Empleado;
 import farmacia_olimpo_p2_prc4.conexion.Conexion;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -26,8 +28,16 @@ public class frmMantenimientoEmpleados extends javax.swing.JFrame {
     public frmMantenimientoEmpleados() {
         initComponents();
         CargarDatosLocal();
+         setIconImage(getIconImage());
     }
-
+    
+      @Override 
+     public Image getIconImage() {
+       Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/ICONO FARMACIA EL OLIMPO.png"));
+       
+       return retValue;
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -48,9 +58,6 @@ public class frmMantenimientoEmpleados extends javax.swing.JFrame {
         btnRegresar = new javax.swing.JPanel();
         Regresar = new javax.swing.JLabel();
         lblDerecho = new javax.swing.JLabel();
-        lblBuscartxt = new javax.swing.JLabel();
-        txtBuscar = new javax.swing.JTextField();
-        spBuscar = new javax.swing.JSeparator();
         lblNombre = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         spNombre = new javax.swing.JSeparator();
@@ -66,13 +73,12 @@ public class frmMantenimientoEmpleados extends javax.swing.JFrame {
         lblEmail = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
         spEmail = new javax.swing.JSeparator();
-        btnBuscar = new javax.swing.JPanel();
-        lblBuscar = new javax.swing.JLabel();
         lblfooter = new javax.swing.JLabel();
         txtTelefono = new javax.swing.JTextField();
         spTelefono1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Mantenimiento Empleados");
         setLocation(new java.awt.Point(500, 250));
         setPreferredSize(new java.awt.Dimension(1132, 784));
         setResizable(false);
@@ -302,28 +308,6 @@ public class frmMantenimientoEmpleados extends javax.swing.JFrame {
         jPanel1.add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
         jPanel1.add(lblDerecho, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 60, 50, 780));
 
-        lblBuscartxt.setBackground(new java.awt.Color(102, 102, 102));
-        lblBuscartxt.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
-        lblBuscartxt.setForeground(new java.awt.Color(102, 102, 102));
-        lblBuscartxt.setText("Buscar");
-        jPanel1.add(lblBuscartxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 150, -1));
-
-        txtBuscar.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
-        txtBuscar.setForeground(new java.awt.Color(153, 153, 153));
-        txtBuscar.setBorder(null);
-        txtBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                txtBuscarMousePressed(evt);
-            }
-        });
-        txtBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtBuscarActionPerformed(evt);
-            }
-        });
-        jPanel1.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 310, 30));
-        jPanel1.add(spBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 320, 10));
-
         lblNombre.setBackground(new java.awt.Color(102, 102, 102));
         lblNombre.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
         lblNombre.setForeground(new java.awt.Color(102, 102, 102));
@@ -415,32 +399,6 @@ public class frmMantenimientoEmpleados extends javax.swing.JFrame {
         });
         jPanel1.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 320, 430, 30));
         jPanel1.add(spEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 350, 440, 10));
-
-        btnBuscar.setBackground(new java.awt.Color(0, 102, 255));
-
-        lblBuscar.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
-        lblBuscar.setForeground(new java.awt.Color(255, 255, 255));
-        lblBuscar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblBuscar.setText("Buscar");
-        lblBuscar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        javax.swing.GroupLayout btnBuscarLayout = new javax.swing.GroupLayout(btnBuscar);
-        btnBuscar.setLayout(btnBuscarLayout);
-        btnBuscarLayout.setHorizontalGroup(
-            btnBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btnBuscarLayout.createSequentialGroup()
-                .addComponent(lblBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        btnBuscarLayout.setVerticalGroup(
-            btnBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btnBuscarLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblBuscar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 190, 90, -1));
         jPanel1.add(lblfooter, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 770, 1130, 70));
 
         txtTelefono.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
@@ -484,18 +442,9 @@ public class frmMantenimientoEmpleados extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtidActionPerformed
 
-    private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtBuscarActionPerformed
-
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombreActionPerformed
-
-    private void txtBuscarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtBuscarMousePressed
-
-
-    }//GEN-LAST:event_txtBuscarMousePressed
 
     private void txtNombreMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNombreMousePressed
 
@@ -511,7 +460,7 @@ public class frmMantenimientoEmpleados extends javax.swing.JFrame {
 
     private void btnLimpiarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimpiarMouseClicked
         txtid.setText("");
-        txtBuscar.setText("");
+      
         txtNombre.setText("");
         txtApellido.setText("");
         txtid.setText("");
@@ -522,7 +471,7 @@ public class frmMantenimientoEmpleados extends javax.swing.JFrame {
 
     private void lblLimpiarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLimpiarMouseClicked
         txtid.setText("");
-        txtBuscar.setText("");
+       
         txtNombre.setText("");
         txtApellido.setText("");
         txtTelefono.setText("");
@@ -639,7 +588,6 @@ public class frmMantenimientoEmpleados extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Regresar;
     private javax.swing.JPanel btnAgregar;
-    private javax.swing.JPanel btnBuscar;
     private javax.swing.JPanel btnEliminar2;
     private javax.swing.JPanel btnLimpiar;
     private javax.swing.JPanel btnModificar;
@@ -648,8 +596,6 @@ public class frmMantenimientoEmpleados extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAgregar1;
     private javax.swing.JLabel lblApellido;
-    private javax.swing.JLabel lblBuscar;
-    private javax.swing.JLabel lblBuscartxt;
     private javax.swing.JLabel lblDerecho;
     private javax.swing.JLabel lblDireccion;
     private javax.swing.JLabel lblEmail;
@@ -662,7 +608,6 @@ public class frmMantenimientoEmpleados extends javax.swing.JFrame {
     private javax.swing.JLabel lblTelefono;
     private javax.swing.JLabel lblfooter;
     private javax.swing.JSeparator spApellido;
-    private javax.swing.JSeparator spBuscar;
     private javax.swing.JSeparator spDireccion;
     private javax.swing.JSeparator spEmail;
     private javax.swing.JSeparator spNombre;
@@ -670,7 +615,6 @@ public class frmMantenimientoEmpleados extends javax.swing.JFrame {
     private javax.swing.JSeparator spTelefono1;
     private javax.swing.JTable tblMantenimientoEmpleados;
     private javax.swing.JTextField txtApellido;
-    private javax.swing.JTextField txtBuscar;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtNombre;

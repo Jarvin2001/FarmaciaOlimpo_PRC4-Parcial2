@@ -5,7 +5,17 @@
  */
 package farmacia_olimpo_p2_prc4.formularios;
 
+import farmacia_olimpo_p2_prc4.clases.Clientes;
+import farmacia_olimpo_p2_prc4.clases.Detalle;
+import farmacia_olimpo_p2_prc4.clases.Empleado;
+import farmacia_olimpo_p2_prc4.clases.Productos;
+import farmacia_olimpo_p2_prc4.clases.Ventas;
+import java.awt.Image;
+import java.awt.Toolkit;
+import javax.swing.ComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -13,11 +23,34 @@ import javax.swing.JOptionPane;
  */
 public class frmVentas extends javax.swing.JFrame {
 
-    /**
-     * Creates new form frmVentas
-     */
+    Detalle deta = new Detalle();
+    Productos pro = new Productos();
+    Empleado emp = new Empleado();
+    Clientes cli = new Clientes();
+    Ventas vent = new Ventas();
+    DefaultTableModel modelo = new DefaultTableModel();
+
     public frmVentas() {
+
         initComponents();
+        CargarDatosLocal();
+        setIconImage(getIconImage());
+    }
+
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/ICONO FARMACIA EL OLIMPO.png"));
+
+        return retValue;
+    }
+
+    public void CargarDatosLocal() {
+        //Inicializamos 
+        tblMantenimientoEmpleados.setModel(emp.CargarDatos());
+        tblMantenimientoProductos.setModel(pro.CargarDatos());
+        tblMantenimientoClientes.setModel(cli.CargarDatos());
+        tblMantenimientoDetalle.setModel(deta.CargarDatos());
+
     }
 
     /**
@@ -32,10 +65,7 @@ public class frmVentas extends javax.swing.JFrame {
         bg = new javax.swing.JPanel();
         btnAgregar = new javax.swing.JPanel();
         Regresar = new javax.swing.JLabel();
-        lblBuscartxt = new javax.swing.JLabel();
-        txtBuscar = new javax.swing.JTextField();
-        spBuscar = new javax.swing.JSeparator();
-        lblHazVenta = new javax.swing.JLabel();
+        lblSelectCliente = new javax.swing.JLabel();
         lblNombreProducto = new javax.swing.JLabel();
         txtNombreProducto = new javax.swing.JTextField();
         spNombreProducto = new javax.swing.JSeparator();
@@ -45,21 +75,50 @@ public class frmVentas extends javax.swing.JFrame {
         lblPrecio = new javax.swing.JLabel();
         txtPrecio = new javax.swing.JTextField();
         spPrecio = new javax.swing.JSeparator();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblMantenimientoEmpleados = new javax.swing.JTable();
         lblTotal = new javax.swing.JLabel();
         txtTotal = new javax.swing.JTextField();
         spTotal = new javax.swing.JSeparator();
         lblCantidad = new javax.swing.JLabel();
-        txtCantidad = new javax.swing.JTextField();
+        txtidCliente = new javax.swing.JTextField();
         spCantidad = new javax.swing.JSeparator();
         btnRegresar1 = new javax.swing.JPanel();
         Regresar1 = new javax.swing.JLabel();
         btnLimpiar = new javax.swing.JPanel();
         lblLimpiar = new javax.swing.JLabel();
         lblTotalPagar = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblMantenimientoDetalle = new javax.swing.JTable();
+        lblHazVenta1 = new javax.swing.JLabel();
+        lblSelectProducto = new javax.swing.JLabel();
+        lblVendedor = new javax.swing.JLabel();
+        lblClienteNombre = new javax.swing.JLabel();
+        txtClienteNombre = new javax.swing.JTextField();
+        spCliente = new javax.swing.JSeparator();
+        lblVendedorNombre = new javax.swing.JLabel();
+        txtVendedorNombre = new javax.swing.JTextField();
+        spVendedor = new javax.swing.JSeparator();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblMantenimientoClientes = new javax.swing.JTable();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tblMantenimientoEmpleados = new javax.swing.JTable();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        tblMantenimientoProductos = new javax.swing.JTable();
+        txtCantidad1 = new javax.swing.JTextField();
+        txtidDetalle = new javax.swing.JTextField();
+        txtidProducto = new javax.swing.JTextField();
+        txtidEmpleado = new javax.swing.JTextField();
+        txtEntrega = new javax.swing.JTextField();
+        lblEntrega = new javax.swing.JLabel();
+        spEntrega = new javax.swing.JSeparator();
+        txtCambio = new javax.swing.JTextField();
+        lblCambio = new javax.swing.JLabel();
+        spCambio = new javax.swing.JSeparator();
+        btnLimpiar1 = new javax.swing.JPanel();
+        lblLimpiar1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Farmacia Olimpo - Ventas");
+        setIconImage(getIconImage());
         setLocation(new java.awt.Point(500, 250));
 
         bg.setBackground(new java.awt.Color(255, 255, 255));
@@ -100,40 +159,18 @@ public class frmVentas extends javax.swing.JFrame {
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
-        bg.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(746, 320, 310, 50));
+        bg.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 520, 310, 50));
 
-        lblBuscartxt.setBackground(new java.awt.Color(102, 102, 102));
-        lblBuscartxt.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
-        lblBuscartxt.setForeground(new java.awt.Color(102, 102, 102));
-        lblBuscartxt.setText("Buscar");
-        bg.add(lblBuscartxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 150, -1));
-
-        txtBuscar.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
-        txtBuscar.setForeground(new java.awt.Color(153, 153, 153));
-        txtBuscar.setBorder(null);
-        txtBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                txtBuscarMousePressed(evt);
-            }
-        });
-        txtBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtBuscarActionPerformed(evt);
-            }
-        });
-        bg.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 310, 30));
-        bg.add(spBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 320, 10));
-
-        lblHazVenta.setFont(new java.awt.Font("Montserrat", 1, 48)); // NOI18N
-        lblHazVenta.setForeground(new java.awt.Color(0, 0, 153));
-        lblHazVenta.setText("Haz una venta");
-        bg.add(lblHazVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 860, 90));
+        lblSelectCliente.setFont(new java.awt.Font("Montserrat", 1, 36)); // NOI18N
+        lblSelectCliente.setForeground(new java.awt.Color(0, 0, 153));
+        lblSelectCliente.setText("Selecciona un Cliente");
+        bg.add(lblSelectCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 260, 540, 90));
 
         lblNombreProducto.setBackground(new java.awt.Color(102, 102, 102));
         lblNombreProducto.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
         lblNombreProducto.setForeground(new java.awt.Color(102, 102, 102));
-        lblNombreProducto.setText("Nombre del Producto");
-        bg.add(lblNombreProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 200, -1));
+        lblNombreProducto.setText("Descripcion");
+        bg.add(lblNombreProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 200, -1));
 
         txtNombreProducto.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
         txtNombreProducto.setForeground(new java.awt.Color(153, 153, 153));
@@ -148,14 +185,14 @@ public class frmVentas extends javax.swing.JFrame {
                 txtNombreProductoActionPerformed(evt);
             }
         });
-        bg.add(txtNombreProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 310, 30));
-        bg.add(spNombreProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 320, 10));
+        bg.add(txtNombreProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 310, 30));
+        bg.add(spNombreProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 320, 10));
 
         lblStock.setBackground(new java.awt.Color(102, 102, 102));
         lblStock.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
         lblStock.setForeground(new java.awt.Color(102, 102, 102));
         lblStock.setText(" Stock");
-        bg.add(lblStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 150, 200, -1));
+        bg.add(lblStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 230, 200, -1));
 
         txtStock.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
         txtStock.setForeground(new java.awt.Color(153, 153, 153));
@@ -170,14 +207,14 @@ public class frmVentas extends javax.swing.JFrame {
                 txtStockActionPerformed(evt);
             }
         });
-        bg.add(txtStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 170, 310, 30));
-        bg.add(spStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 200, 320, 10));
+        bg.add(txtStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 250, 310, 30));
+        bg.add(spStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 280, 320, 10));
 
         lblPrecio.setBackground(new java.awt.Color(102, 102, 102));
         lblPrecio.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
         lblPrecio.setForeground(new java.awt.Color(102, 102, 102));
         lblPrecio.setText("Precio");
-        bg.add(lblPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 220, 200, -1));
+        bg.add(lblPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 310, 200, -1));
 
         txtPrecio.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
         txtPrecio.setForeground(new java.awt.Color(153, 153, 153));
@@ -192,32 +229,14 @@ public class frmVentas extends javax.swing.JFrame {
                 txtPrecioActionPerformed(evt);
             }
         });
-        bg.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 240, 310, 30));
-        bg.add(spPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 270, 320, 10));
-
-        tblMantenimientoEmpleados.setBackground(new java.awt.Color(255, 255, 255));
-        tblMantenimientoEmpleados.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        tblMantenimientoEmpleados.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        tblMantenimientoEmpleados.setGridColor(new java.awt.Color(0, 0, 153));
-        jScrollPane1.setViewportView(tblMantenimientoEmpleados);
-
-        bg.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 450, 1080, 350));
+        bg.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 330, 310, 30));
+        bg.add(spPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 360, 320, 10));
 
         lblTotal.setBackground(new java.awt.Color(102, 102, 102));
         lblTotal.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
         lblTotal.setForeground(new java.awt.Color(102, 102, 102));
         lblTotal.setText("Total");
-        bg.add(lblTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 220, 200, -1));
+        bg.add(lblTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, 200, -1));
 
         txtTotal.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
         txtTotal.setForeground(new java.awt.Color(153, 153, 153));
@@ -232,35 +251,35 @@ public class frmVentas extends javax.swing.JFrame {
                 txtTotalActionPerformed(evt);
             }
         });
-        bg.add(txtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 240, 310, 30));
-        bg.add(spTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 270, 320, 10));
+        bg.add(txtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, 310, 30));
+        bg.add(spTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 440, 320, 10));
 
         lblCantidad.setBackground(new java.awt.Color(102, 102, 102));
         lblCantidad.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
         lblCantidad.setForeground(new java.awt.Color(102, 102, 102));
         lblCantidad.setText("Cantidad ");
-        bg.add(lblCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 150, 200, -1));
+        bg.add(lblCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 200, -1));
 
-        txtCantidad.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
-        txtCantidad.setForeground(new java.awt.Color(153, 153, 153));
-        txtCantidad.setBorder(null);
-        txtCantidad.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtidCliente.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
+        txtidCliente.setForeground(new java.awt.Color(153, 153, 153));
+        txtidCliente.setBorder(null);
+        txtidCliente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                txtCantidadMousePressed(evt);
+                txtidClienteMousePressed(evt);
             }
         });
-        txtCantidad.addActionListener(new java.awt.event.ActionListener() {
+        txtidCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCantidadActionPerformed(evt);
+                txtidClienteActionPerformed(evt);
             }
         });
-        txtCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtidCliente.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCantidadKeyPressed(evt);
+                txtidClienteKeyPressed(evt);
             }
         });
-        bg.add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 170, 310, 30));
-        bg.add(spCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 200, 320, 10));
+        bg.add(txtidCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(1400, 890, 30, 30));
+        bg.add(spCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 320, 10));
 
         btnRegresar1.setBackground(new java.awt.Color(0, 102, 255));
         btnRegresar1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -296,7 +315,7 @@ public class frmVentas extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        bg.add(btnRegresar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+        bg.add(btnRegresar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
         btnLimpiar.setBackground(new java.awt.Color(0, 102, 255));
         btnLimpiar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -321,29 +340,411 @@ public class frmVentas extends javax.swing.JFrame {
         btnLimpiarLayout.setHorizontalGroup(
             btnLimpiarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btnLimpiarLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
                 .addComponent(lblLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 1, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         btnLimpiarLayout.setVerticalGroup(
             btnLimpiarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btnLimpiarLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(15, 15, 15)
                 .addComponent(lblLimpiar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
-        bg.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, 100, -1));
-        bg.add(lblTotalPagar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 360, 140, 30));
+        bg.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 870, 140, 50));
+        bg.add(lblTotalPagar, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 360, 140, 30));
+
+        tblMantenimientoDetalle.setBackground(new java.awt.Color(255, 255, 255));
+        tblMantenimientoDetalle.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
+        tblMantenimientoDetalle.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Cantidad", "Descripcion", "Precio", "Total", "Cliente"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.Double.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblMantenimientoDetalle.setGridColor(new java.awt.Color(0, 0, 153));
+        tblMantenimientoDetalle.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblMantenimientoDetalleMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tblMantenimientoDetalle);
+        if (tblMantenimientoDetalle.getColumnModel().getColumnCount() > 0) {
+            tblMantenimientoDetalle.getColumnModel().getColumn(0).setResizable(false);
+            tblMantenimientoDetalle.getColumnModel().getColumn(0).setPreferredWidth(5);
+            tblMantenimientoDetalle.getColumnModel().getColumn(1).setResizable(false);
+            tblMantenimientoDetalle.getColumnModel().getColumn(1).setPreferredWidth(200);
+            tblMantenimientoDetalle.getColumnModel().getColumn(2).setResizable(false);
+            tblMantenimientoDetalle.getColumnModel().getColumn(2).setPreferredWidth(5);
+            tblMantenimientoDetalle.getColumnModel().getColumn(3).setResizable(false);
+            tblMantenimientoDetalle.getColumnModel().getColumn(3).setPreferredWidth(5);
+            tblMantenimientoDetalle.getColumnModel().getColumn(4).setResizable(false);
+            tblMantenimientoDetalle.getColumnModel().getColumn(4).setPreferredWidth(50);
+        }
+
+        bg.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 580, 760, 280));
+
+        lblHazVenta1.setFont(new java.awt.Font("Montserrat", 1, 48)); // NOI18N
+        lblHazVenta1.setForeground(new java.awt.Color(0, 0, 153));
+        lblHazVenta1.setText("Haz una venta");
+        bg.add(lblHazVenta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 420, 90));
+
+        lblSelectProducto.setFont(new java.awt.Font("Montserrat", 1, 36)); // NOI18N
+        lblSelectProducto.setForeground(new java.awt.Color(0, 0, 153));
+        lblSelectProducto.setText("Selecciona un Producto");
+        bg.add(lblSelectProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 20, 540, 90));
+
+        lblVendedor.setFont(new java.awt.Font("Montserrat", 1, 36)); // NOI18N
+        lblVendedor.setForeground(new java.awt.Color(0, 0, 153));
+        lblVendedor.setText("Selecciona un Vendedor");
+        bg.add(lblVendedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 510, 540, 90));
+
+        lblClienteNombre.setBackground(new java.awt.Color(102, 102, 102));
+        lblClienteNombre.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
+        lblClienteNombre.setForeground(new java.awt.Color(102, 102, 102));
+        lblClienteNombre.setText("Cliente");
+        bg.add(lblClienteNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 200, -1));
+
+        txtClienteNombre.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
+        txtClienteNombre.setForeground(new java.awt.Color(153, 153, 153));
+        txtClienteNombre.setBorder(null);
+        txtClienteNombre.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtClienteNombreMousePressed(evt);
+            }
+        });
+        txtClienteNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtClienteNombreActionPerformed(evt);
+            }
+        });
+        bg.add(txtClienteNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 310, 30));
+        bg.add(spCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 320, 10));
+
+        lblVendedorNombre.setBackground(new java.awt.Color(102, 102, 102));
+        lblVendedorNombre.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
+        lblVendedorNombre.setForeground(new java.awt.Color(102, 102, 102));
+        lblVendedorNombre.setText("Vendedor");
+        bg.add(lblVendedorNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 160, 200, -1));
+
+        txtVendedorNombre.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
+        txtVendedorNombre.setForeground(new java.awt.Color(153, 153, 153));
+        txtVendedorNombre.setBorder(null);
+        txtVendedorNombre.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtVendedorNombreMousePressed(evt);
+            }
+        });
+        txtVendedorNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtVendedorNombreActionPerformed(evt);
+            }
+        });
+        bg.add(txtVendedorNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 180, 310, 30));
+        bg.add(spVendedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 210, 320, 10));
+
+        tblMantenimientoClientes.setBackground(new java.awt.Color(255, 255, 255));
+        tblMantenimientoClientes.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
+        tblMantenimientoClientes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "idclientes", "Nombre", "Apellido", "Telefono", "Direccion", "Correo Electronico"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblMantenimientoClientes.setGridColor(new java.awt.Color(0, 0, 153));
+        tblMantenimientoClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblMantenimientoClientesMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblMantenimientoClientes);
+
+        bg.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 340, 600, 180));
+
+        tblMantenimientoEmpleados.setBackground(new java.awt.Color(255, 255, 255));
+        tblMantenimientoEmpleados.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
+        tblMantenimientoEmpleados.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Id", "Nombre", "Apellido", "Telefono", "Dirección", "Email"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblMantenimientoEmpleados.setGridColor(new java.awt.Color(0, 0, 153));
+        tblMantenimientoEmpleados.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblMantenimientoEmpleadosMouseClicked(evt);
+            }
+        });
+        jScrollPane5.setViewportView(tblMantenimientoEmpleados);
+
+        bg.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 580, 600, 180));
+
+        tblMantenimientoProductos.setBackground(new java.awt.Color(255, 255, 255));
+        tblMantenimientoProductos.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
+        tblMantenimientoProductos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "idProductos", "Nombre", "Precio", "Stock", "Descripcion"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblMantenimientoProductos.setGridColor(new java.awt.Color(0, 0, 153));
+        tblMantenimientoProductos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblMantenimientoProductosMouseClicked(evt);
+            }
+        });
+        jScrollPane6.setViewportView(tblMantenimientoProductos);
+
+        bg.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 90, 600, 180));
+
+        txtCantidad1.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
+        txtCantidad1.setForeground(new java.awt.Color(153, 153, 153));
+        txtCantidad1.setBorder(null);
+        txtCantidad1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtCantidad1MousePressed(evt);
+            }
+        });
+        txtCantidad1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCantidad1ActionPerformed(evt);
+            }
+        });
+        txtCantidad1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCantidad1KeyPressed(evt);
+            }
+        });
+        bg.add(txtCantidad1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, 310, 30));
+
+        txtidDetalle.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
+        txtidDetalle.setForeground(new java.awt.Color(153, 153, 153));
+        txtidDetalle.setBorder(null);
+        txtidDetalle.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtidDetalleMousePressed(evt);
+            }
+        });
+        txtidDetalle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtidDetalleActionPerformed(evt);
+            }
+        });
+        txtidDetalle.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtidDetalleKeyPressed(evt);
+            }
+        });
+        bg.add(txtidDetalle, new org.netbeans.lib.awtextra.AbsoluteConstraints(1280, 890, 30, 30));
+
+        txtidProducto.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
+        txtidProducto.setForeground(new java.awt.Color(153, 153, 153));
+        txtidProducto.setBorder(null);
+        txtidProducto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtidProductoMousePressed(evt);
+            }
+        });
+        txtidProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtidProductoActionPerformed(evt);
+            }
+        });
+        txtidProducto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtidProductoKeyPressed(evt);
+            }
+        });
+        bg.add(txtidProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(1320, 890, 30, 30));
+
+        txtidEmpleado.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
+        txtidEmpleado.setForeground(new java.awt.Color(153, 153, 153));
+        txtidEmpleado.setBorder(null);
+        txtidEmpleado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtidEmpleadoMousePressed(evt);
+            }
+        });
+        txtidEmpleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtidEmpleadoActionPerformed(evt);
+            }
+        });
+        txtidEmpleado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtidEmpleadoKeyPressed(evt);
+            }
+        });
+        bg.add(txtidEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(1360, 890, 30, 30));
+
+        txtEntrega.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
+        txtEntrega.setForeground(new java.awt.Color(153, 153, 153));
+        txtEntrega.setBorder(null);
+        txtEntrega.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtEntregaMousePressed(evt);
+            }
+        });
+        txtEntrega.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEntregaActionPerformed(evt);
+            }
+        });
+        txtEntrega.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtEntregaKeyPressed(evt);
+            }
+        });
+        bg.add(txtEntrega, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 410, 310, 30));
+
+        lblEntrega.setBackground(new java.awt.Color(102, 102, 102));
+        lblEntrega.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
+        lblEntrega.setForeground(new java.awt.Color(102, 102, 102));
+        lblEntrega.setText("Entrega");
+        bg.add(lblEntrega, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 390, 200, -1));
+        bg.add(spEntrega, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 440, 320, 10));
+
+        txtCambio.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
+        txtCambio.setForeground(new java.awt.Color(153, 153, 153));
+        txtCambio.setBorder(null);
+        txtCambio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtCambioMousePressed(evt);
+            }
+        });
+        txtCambio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCambioActionPerformed(evt);
+            }
+        });
+        bg.add(txtCambio, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 500, 310, 30));
+
+        lblCambio.setBackground(new java.awt.Color(102, 102, 102));
+        lblCambio.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
+        lblCambio.setForeground(new java.awt.Color(102, 102, 102));
+        lblCambio.setText("Cambio");
+        bg.add(lblCambio, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 480, 200, -1));
+        bg.add(spCambio, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 530, 320, 10));
+
+        btnLimpiar1.setBackground(new java.awt.Color(0, 102, 255));
+        btnLimpiar1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnLimpiar1MouseClicked(evt);
+            }
+        });
+
+        lblLimpiar1.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
+        lblLimpiar1.setForeground(new java.awt.Color(255, 255, 255));
+        lblLimpiar1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblLimpiar1.setText("Nueva Venta");
+        lblLimpiar1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        lblLimpiar1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblLimpiar1MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout btnLimpiar1Layout = new javax.swing.GroupLayout(btnLimpiar1);
+        btnLimpiar1.setLayout(btnLimpiar1Layout);
+        btnLimpiar1Layout.setHorizontalGroup(
+            btnLimpiar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnLimpiar1Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(lblLimpiar1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
+        btnLimpiar1Layout.setVerticalGroup(
+            btnLimpiar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnLimpiar1Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(lblLimpiar1)
+                .addContainerGap(17, Short.MAX_VALUE))
+        );
+
+        bg.add(btnLimpiar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 870, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, 1160, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE, 1479, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE, 1000, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -351,20 +752,22 @@ public class frmVentas extends javax.swing.JFrame {
 
     private void RegresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegresarMouseClicked
         //Invocamos a la ventana Inicio
-        
+
     }//GEN-LAST:event_RegresarMouseClicked
 
     private void btnAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarMouseClicked
-        Calcular(1);
+        String resultado;
+        deta.setCantidad(Integer.parseInt(this.txtCantidad1.getText()));
+        deta.setDescripcion(this.txtNombreProducto.getText());
+        deta.setPrecio(this.txtPrecio.getText());
+        deta.setTotal(this.txtTotal.getText());
+        deta.setCliente(this.txtClienteNombre.getText());
+
+        resultado = deta.NuevoDetalle();
+        CargarDatosLocal();
+
+
     }//GEN-LAST:event_btnAgregarMouseClicked
-
-    private void txtBuscarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtBuscarMousePressed
-
-    }//GEN-LAST:event_txtBuscarMousePressed
-
-    private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtBuscarActionPerformed
 
     private void txtNombreProductoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNombreProductoMousePressed
         // TODO add your handling code here:
@@ -398,16 +801,16 @@ public class frmVentas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTotalActionPerformed
 
-    private void txtCantidadMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCantidadMousePressed
+    private void txtidClienteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtidClienteMousePressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCantidadMousePressed
+    }//GEN-LAST:event_txtidClienteMousePressed
 
-    private void txtCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantidadActionPerformed
+    private void txtidClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidClienteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCantidadActionPerformed
+    }//GEN-LAST:event_txtidClienteActionPerformed
 
     private void Regresar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Regresar1MouseClicked
-      frmInicio newframe = new frmInicio();
+        frmInicio newframe = new frmInicio();
         newframe.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_Regresar1MouseClicked
@@ -419,51 +822,223 @@ public class frmVentas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegresar1MouseClicked
 
     private void btnLimpiarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimpiarMouseClicked
-        txtBuscar.setText("");
+
         txtNombreProducto.setText("");
         txtStock.setText("");
-        txtCantidad.setText("");
+        txtidCliente.setText("");
         txtPrecio.setText("");
         txtTotal.setText("");
     }//GEN-LAST:event_btnLimpiarMouseClicked
 
     private void lblLimpiarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLimpiarMouseClicked
+        txtClienteNombre.setText("");
+        txtCantidad1.setText("");
+        txtVendedorNombre.setText("");
+        txtCambio.setText("");
         txtNombreProducto.setText("");
         txtStock.setText("");
         txtPrecio.setText("");
-        txtCantidad.setText("");
+        txtidCliente.setText("");
         txtTotal.setText("");
-        txtBuscar.setText("");
+        txtEntrega.setText("");
+
     }//GEN-LAST:event_lblLimpiarMouseClicked
 
-    private void txtCantidadKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyPressed
-       
-       
-    }//GEN-LAST:event_txtCantidadKeyPressed
+    private void txtidClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtidClienteKeyPressed
 
-    
-        public void Calcular(int opciones){
-        double resultado=0;
-        try {
-            double num1 = Double.parseDouble(txtCantidad.getText());
-            double num2 = Double.parseDouble(txtPrecio.getText());
-            switch(opciones){
-                case 1: resultado=num1*num2;break; 
+
+    }//GEN-LAST:event_txtidClienteKeyPressed
+
+    private void txtClienteNombreMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtClienteNombreMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtClienteNombreMousePressed
+
+    private void txtClienteNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtClienteNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtClienteNombreActionPerformed
+
+    private void txtVendedorNombreMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtVendedorNombreMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtVendedorNombreMousePressed
+
+    private void txtVendedorNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtVendedorNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtVendedorNombreActionPerformed
+
+    private void tblMantenimientoClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMantenimientoClientesMouseClicked
+        // Get The Index Of The Slected Row
+        int i = tblMantenimientoClientes.getSelectedRow();
+        TableModel model = tblMantenimientoClientes.getModel();
+        this.txtidCliente.enable(false);
+        this.txtidCliente.setText(model.getValueAt(i, 0).toString());
+        this.txtClienteNombre.setText(model.getValueAt(i, 1).toString());
+
+
+    }//GEN-LAST:event_tblMantenimientoClientesMouseClicked
+
+    private void tblMantenimientoEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMantenimientoEmpleadosMouseClicked
+        // Get The Index Of The Slected Row
+        int i = tblMantenimientoEmpleados.getSelectedRow();
+        TableModel model = tblMantenimientoEmpleados.getModel();
+        this.txtidEmpleado.enable(false);
+        this.txtidEmpleado.setText(model.getValueAt(i, 0).toString());
+        this.txtVendedorNombre.setText(model.getValueAt(i, 1).toString());
+    }//GEN-LAST:event_tblMantenimientoEmpleadosMouseClicked
+
+    private void tblMantenimientoProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMantenimientoProductosMouseClicked
+        int i = tblMantenimientoProductos.getSelectedRow();
+        TableModel model = tblMantenimientoProductos.getModel();
+        this.txtidProducto.enable(false);
+        this.txtidProducto.setText(model.getValueAt(i, 0).toString());
+        this.txtNombreProducto.setText(model.getValueAt(i, 1).toString());
+        this.txtPrecio.setText(model.getValueAt(i, 2).toString());
+        this.txtStock.setText(model.getValueAt(i, 3).toString());
+
+
+    }//GEN-LAST:event_tblMantenimientoProductosMouseClicked
+
+    private void txtCantidad1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCantidad1MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCantidad1MousePressed
+
+    private void txtCantidad1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantidad1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCantidad1ActionPerformed
+
+    private void txtCantidad1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidad1KeyPressed
+        Calcular(1);
+    }//GEN-LAST:event_txtCantidad1KeyPressed
+
+    private void txtidDetalleMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtidDetalleMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtidDetalleMousePressed
+
+    private void txtidDetalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidDetalleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtidDetalleActionPerformed
+
+    private void txtidDetalleKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtidDetalleKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtidDetalleKeyPressed
+
+    private void txtidProductoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtidProductoMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtidProductoMousePressed
+
+    private void txtidProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidProductoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtidProductoActionPerformed
+
+    private void txtidProductoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtidProductoKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtidProductoKeyPressed
+
+    private void txtidEmpleadoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtidEmpleadoMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtidEmpleadoMousePressed
+
+    private void txtidEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidEmpleadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtidEmpleadoActionPerformed
+
+    private void txtidEmpleadoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtidEmpleadoKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtidEmpleadoKeyPressed
+
+    private void txtEntregaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEntregaMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEntregaMousePressed
+
+    private void txtEntregaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEntregaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEntregaActionPerformed
+
+    private void txtCambioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCambioMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCambioMousePressed
+
+    private void txtCambioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCambioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCambioActionPerformed
+
+    private void txtEntregaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEntregaKeyPressed
+        Calcular2(1);
+    }//GEN-LAST:event_txtEntregaKeyPressed
+
+    private void tblMantenimientoDetalleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMantenimientoDetalleMouseClicked
+        int i = tblMantenimientoDetalle.getSelectedRow();
+        TableModel model = tblMantenimientoDetalle.getModel();
+        this.txtidDetalle.enable(false);
+        this.txtidDetalle.setText(model.getValueAt(i, 0).toString());
+        //this.txtNombreProducto.setText(model.getValueAt(i, 1).toString());
+        //this.txtPrecio.setText(model.getValueAt(i, 2).toString());
+        // this.txtStock.setText(model.getValueAt(i, 3).toString());
+    }//GEN-LAST:event_tblMantenimientoDetalleMouseClicked
+
+    private void lblLimpiar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLimpiar1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblLimpiar1MouseClicked
+
+    private void btnLimpiar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimpiar1MouseClicked
+        String resultado = null;
+        String resultado2;
+        resultado = deta.NuevaVenta(Integer.parseInt(txtidDetalle.getText()));
+        CargarDatosLocal();
+
+        vent.setVendedor(this.txtVendedorNombre.getText());
+        vent.setProducto(this.txtNombreProducto.getText());
+        vent.setTotal(this.txtTotal.getText());
+        vent.setCliente(this.txtClienteNombre.getText());
+
+        resultado = vent.NuevaVenta();
+        CargarDatosLocal();
+
+        txtClienteNombre.setText("");
+        txtCantidad1.setText("");
+        txtVendedorNombre.setText("");
+        txtCambio.setText("");
+        txtNombreProducto.setText("");
+        txtStock.setText("");
+        txtPrecio.setText("");
+        txtidCliente.setText("");
+        txtTotal.setText("");
+        txtEntrega.setText("");
+
+
+    }//GEN-LAST:event_btnLimpiar1MouseClicked
+
+    public void Calcular(int opciones) {
+        double resultado = 0;
+
+        {
+            double num1 = Double.parseDouble(txtPrecio.getText());
+            double num2 = Double.parseDouble(txtCantidad1.getText());
+
+            switch (opciones) {
+                case 1:
+                    resultado = num1 * num2;
+                    break;
             }
-            lblTotalPagar.setText("" + resultado);
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Debe digitar solo valores numericos.\n Intentelo de nuevo");
+            txtTotal.setText("" + resultado);
+        }
 
-        }
-        catch(Exception e ){
-            String msj = "Ups! Algo salio mal intentalo de nuevo "+e;
-            JOptionPane.showMessageDialog(null, msj);
-        }
-        
     }
-    
-    
-    
+
+    public void Calcular2(int opciones) {
+        double resultado = 0;
+        {
+            double num1 = Double.parseDouble(txtTotal.getText());
+            double num2 = Double.parseDouble(txtEntrega.getText());
+            switch (opciones) {
+                case 1:
+                    resultado = num2 - num1;
+                    break;
+            }
+            txtCambio.setText("" + resultado);
+        }
+
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -499,35 +1074,60 @@ public class frmVentas extends javax.swing.JFrame {
         });
     }
 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Regresar;
     private javax.swing.JLabel Regresar1;
     private javax.swing.JPanel bg;
     private javax.swing.JPanel btnAgregar;
     private javax.swing.JPanel btnLimpiar;
+    private javax.swing.JPanel btnLimpiar1;
     private javax.swing.JPanel btnRegresar1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblBuscartxt;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JLabel lblCambio;
     private javax.swing.JLabel lblCantidad;
-    private javax.swing.JLabel lblHazVenta;
+    private javax.swing.JLabel lblClienteNombre;
+    private javax.swing.JLabel lblEntrega;
+    private javax.swing.JLabel lblHazVenta1;
     private javax.swing.JLabel lblLimpiar;
+    private javax.swing.JLabel lblLimpiar1;
     private javax.swing.JLabel lblNombreProducto;
     private javax.swing.JLabel lblPrecio;
+    private javax.swing.JLabel lblSelectCliente;
+    private javax.swing.JLabel lblSelectProducto;
     private javax.swing.JLabel lblStock;
     private javax.swing.JLabel lblTotal;
     private javax.swing.JLabel lblTotalPagar;
-    private javax.swing.JSeparator spBuscar;
+    private javax.swing.JLabel lblVendedor;
+    private javax.swing.JLabel lblVendedorNombre;
+    private javax.swing.JSeparator spCambio;
     private javax.swing.JSeparator spCantidad;
+    private javax.swing.JSeparator spCliente;
+    private javax.swing.JSeparator spEntrega;
     private javax.swing.JSeparator spNombreProducto;
     private javax.swing.JSeparator spPrecio;
     private javax.swing.JSeparator spStock;
     private javax.swing.JSeparator spTotal;
+    private javax.swing.JSeparator spVendedor;
+    private javax.swing.JTable tblMantenimientoClientes;
+    private javax.swing.JTable tblMantenimientoDetalle;
     private javax.swing.JTable tblMantenimientoEmpleados;
-    private javax.swing.JTextField txtBuscar;
-    private javax.swing.JTextField txtCantidad;
+    private javax.swing.JTable tblMantenimientoProductos;
+    private javax.swing.JTextField txtCambio;
+    private javax.swing.JTextField txtCantidad1;
+    private javax.swing.JTextField txtClienteNombre;
+    private javax.swing.JTextField txtEntrega;
     private javax.swing.JTextField txtNombreProducto;
     private javax.swing.JTextField txtPrecio;
     private javax.swing.JTextField txtStock;
     private javax.swing.JTextField txtTotal;
+    private javax.swing.JTextField txtVendedorNombre;
+    private javax.swing.JTextField txtidCliente;
+    private javax.swing.JTextField txtidDetalle;
+    private javax.swing.JTextField txtidEmpleado;
+    private javax.swing.JTextField txtidProducto;
     // End of variables declaration//GEN-END:variables
 }

@@ -6,6 +6,8 @@
 package farmacia_olimpo_p2_prc4.formularios;
 
 import java.awt.Color;
+import java.awt.Image;
+import java.awt.Toolkit;
 
 /**
  *
@@ -18,8 +20,17 @@ public class frmInicio extends javax.swing.JFrame {
      */
     public frmInicio() {
         initComponents();
+        setIconImage(getIconImage());
     }
-
+    
+    
+     @Override 
+     public Image getIconImage() {
+       Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/ICONO FARMACIA EL OLIMPO.png"));
+       
+       return retValue;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -41,6 +52,7 @@ public class frmInicio extends javax.swing.JFrame {
         HacerVenta = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Farmacia Olimpo - Inicio");
         setBackground(new java.awt.Color(255, 255, 255));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setLocation(new java.awt.Point(500, 250));

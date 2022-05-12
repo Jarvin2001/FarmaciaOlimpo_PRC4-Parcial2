@@ -6,6 +6,8 @@
 package farmacia_olimpo_p2_prc4.formularios;
 
 import java.awt.Color;
+import java.awt.Image;
+import java.awt.Toolkit;
 
 /**
  *
@@ -18,7 +20,19 @@ public class frmConfiguracion extends javax.swing.JFrame {
      */
     public frmConfiguracion() {
         initComponents();
+         setIconImage(getIconImage());
     }
+    
+    
+    @Override
+    public Image getIconImage() {
+        
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/ICONO FARMACIA EL OLIMPO.png"));
+
+        return retValue;
+    }
+
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -48,8 +62,12 @@ public class frmConfiguracion extends javax.swing.JFrame {
         btnInformacion = new javax.swing.JPanel();
         lblInformacion = new javax.swing.JLabel();
         spInformacion = new javax.swing.JSeparator();
+        btnInformacion1 = new javax.swing.JPanel();
+        lblInformacion1 = new javax.swing.JLabel();
+        spInformacion1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Configuracion");
         setLocation(new java.awt.Point(500, 250));
         setPreferredSize(new java.awt.Dimension(1132, 784));
 
@@ -223,15 +241,15 @@ public class frmConfiguracion extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        bg.add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 430, 590, 50));
+        bg.add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 470, 590, 50));
 
         spRegresar.setBackground(new java.awt.Color(204, 204, 204));
-        bg.add(spRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 480, 560, 50));
-        bg.add(FOOTER, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 570, 1130, 210));
+        bg.add(spRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 520, 560, 50));
+        bg.add(FOOTER, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 740, 1130, 40));
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/farmacia_olimpo_p2_prc4/recursosGraficos/tuercas.png"))); // NOI18N
-        bg.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 0, 510, 790));
+        bg.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 0, 510, 790));
 
         btnInformacion.setBackground(new java.awt.Color(255, 255, 255));
         btnInformacion.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -272,10 +290,54 @@ public class frmConfiguracion extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        bg.add(btnInformacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, 590, 50));
+        bg.add(btnInformacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, 590, 50));
 
         spInformacion.setBackground(new java.awt.Color(204, 204, 204));
-        bg.add(spInformacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 410, 560, 50));
+        bg.add(spInformacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 460, 560, 50));
+
+        btnInformacion1.setBackground(new java.awt.Color(255, 255, 255));
+        btnInformacion1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnInformacion1MouseClicked(evt);
+            }
+        });
+
+        lblInformacion1.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
+        lblInformacion1.setForeground(new java.awt.Color(153, 153, 153));
+        lblInformacion1.setText("Historial de Ventas");
+        lblInformacion1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblInformacion1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblInformacion1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblInformacion1MouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout btnInformacion1Layout = new javax.swing.GroupLayout(btnInformacion1);
+        btnInformacion1.setLayout(btnInformacion1Layout);
+        btnInformacion1Layout.setHorizontalGroup(
+            btnInformacion1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnInformacion1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblInformacion1, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(279, Short.MAX_VALUE))
+        );
+        btnInformacion1Layout.setVerticalGroup(
+            btnInformacion1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnInformacion1Layout.createSequentialGroup()
+                .addContainerGap(21, Short.MAX_VALUE)
+                .addComponent(lblInformacion1)
+                .addContainerGap())
+        );
+
+        bg.add(btnInformacion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 590, 50));
+
+        spInformacion1.setBackground(new java.awt.Color(204, 204, 204));
+        bg.add(spInformacion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 400, 560, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -389,6 +451,24 @@ public class frmConfiguracion extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnInformacionMouseClicked
 
+    private void lblInformacion1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblInformacion1MouseClicked
+        Historial newframe = new Historial();
+        newframe.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_lblInformacion1MouseClicked
+
+    private void lblInformacion1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblInformacion1MouseEntered
+       lblInformacion1.setForeground(Color.BLACK);
+    }//GEN-LAST:event_lblInformacion1MouseEntered
+
+    private void lblInformacion1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblInformacion1MouseExited
+       lblInformacion1.setForeground(Color.GRAY);
+    }//GEN-LAST:event_lblInformacion1MouseExited
+
+    private void btnInformacion1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInformacion1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnInformacion1MouseClicked
+
     
     
     
@@ -435,10 +515,12 @@ public class frmConfiguracion extends javax.swing.JFrame {
     private javax.swing.JPanel btnCrudEmpleado;
     private javax.swing.JPanel btnCrudProductos;
     private javax.swing.JPanel btnInformacion;
+    private javax.swing.JPanel btnInformacion1;
     private javax.swing.JPanel btnRegresar;
     private javax.swing.JLabel configuracionlbl;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblInformacion;
+    private javax.swing.JLabel lblInformacion1;
     private javax.swing.JLabel lblMantenimientoClientes;
     private javax.swing.JLabel lblMantenimientoEmpleados;
     private javax.swing.JLabel lblMantenimientoProductos;
@@ -446,6 +528,7 @@ public class frmConfiguracion extends javax.swing.JFrame {
     private javax.swing.JSeparator spClientes;
     private javax.swing.JSeparator spEmpleados;
     private javax.swing.JSeparator spInformacion;
+    private javax.swing.JSeparator spInformacion1;
     private javax.swing.JSeparator spProductos;
     private javax.swing.JSeparator spRegresar;
     // End of variables declaration//GEN-END:variables

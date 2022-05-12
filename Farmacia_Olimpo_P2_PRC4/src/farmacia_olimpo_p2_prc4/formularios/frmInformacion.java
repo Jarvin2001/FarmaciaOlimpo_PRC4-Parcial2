@@ -5,6 +5,9 @@
  */
 package farmacia_olimpo_p2_prc4.formularios;
 
+import java.awt.Image;
+import java.awt.Toolkit;
+
 /**
  *
  * @author jarvi
@@ -16,6 +19,14 @@ public class frmInformacion extends javax.swing.JFrame {
      */
     public frmInformacion() {
         initComponents();
+        setIconImage(getIconImage());
+    }
+
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/ICONO FARMACIA EL OLIMPO.png"));
+
+        return retValue;
     }
 
     /**
@@ -37,6 +48,7 @@ public class frmInformacion extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Información");
         setLocation(new java.awt.Point(500, 250));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));

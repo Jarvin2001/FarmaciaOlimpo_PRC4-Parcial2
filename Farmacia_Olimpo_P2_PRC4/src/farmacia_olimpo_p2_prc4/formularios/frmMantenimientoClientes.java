@@ -6,6 +6,8 @@
 package farmacia_olimpo_p2_prc4.formularios;
 
 import farmacia_olimpo_p2_prc4.clases.Clientes;
+import java.awt.Image;
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -20,9 +22,18 @@ public class frmMantenimientoClientes extends javax.swing.JFrame {
      DefaultTableModel modelo = new DefaultTableModel();
      
     public frmMantenimientoClientes() {
-        initComponents();
+           initComponents();
          CargarDatosLocal();
+          setIconImage(getIconImage());
     }
+    
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/ICONO FARMACIA EL OLIMPO.png"));
+
+        return retValue;
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -49,9 +60,6 @@ public class frmMantenimientoClientes extends javax.swing.JFrame {
         btnRegresar = new javax.swing.JPanel();
         Regresar = new javax.swing.JLabel();
         lblDerecho = new javax.swing.JLabel();
-        lblBuscartxt = new javax.swing.JLabel();
-        txtBuscar = new javax.swing.JTextField();
-        spBuscar = new javax.swing.JSeparator();
         lblNombre = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         spNombre = new javax.swing.JSeparator();
@@ -67,13 +75,12 @@ public class frmMantenimientoClientes extends javax.swing.JFrame {
         lblEmail = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
         spEmail = new javax.swing.JSeparator();
-        btnBuscar = new javax.swing.JPanel();
-        lblBuscar = new javax.swing.JLabel();
         lblfooter = new javax.swing.JLabel();
         txtid = new javax.swing.JTextField();
         spTelefono1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Mantenimiento Clientes");
         setLocation(new java.awt.Point(500, 250));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -296,28 +303,6 @@ public class frmMantenimientoClientes extends javax.swing.JFrame {
         jPanel1.add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
         jPanel1.add(lblDerecho, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 70, 50, 780));
 
-        lblBuscartxt.setBackground(new java.awt.Color(102, 102, 102));
-        lblBuscartxt.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
-        lblBuscartxt.setForeground(new java.awt.Color(102, 102, 102));
-        lblBuscartxt.setText("Buscar");
-        jPanel1.add(lblBuscartxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 150, -1));
-
-        txtBuscar.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
-        txtBuscar.setForeground(new java.awt.Color(153, 153, 153));
-        txtBuscar.setBorder(null);
-        txtBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                txtBuscarMousePressed(evt);
-            }
-        });
-        txtBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtBuscarActionPerformed(evt);
-            }
-        });
-        jPanel1.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 310, 30));
-        jPanel1.add(spBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 320, 10));
-
         lblNombre.setBackground(new java.awt.Color(102, 102, 102));
         lblNombre.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
         lblNombre.setForeground(new java.awt.Color(102, 102, 102));
@@ -407,32 +392,6 @@ public class frmMantenimientoClientes extends javax.swing.JFrame {
         });
         jPanel1.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 330, 430, 30));
         jPanel1.add(spEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 360, 440, 10));
-
-        btnBuscar.setBackground(new java.awt.Color(0, 102, 255));
-
-        lblBuscar.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
-        lblBuscar.setForeground(new java.awt.Color(255, 255, 255));
-        lblBuscar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblBuscar.setText("Buscar");
-        lblBuscar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        javax.swing.GroupLayout btnBuscarLayout = new javax.swing.GroupLayout(btnBuscar);
-        btnBuscar.setLayout(btnBuscarLayout);
-        btnBuscarLayout.setHorizontalGroup(
-            btnBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btnBuscarLayout.createSequentialGroup()
-                .addComponent(lblBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 1, Short.MAX_VALUE))
-        );
-        btnBuscarLayout.setVerticalGroup(
-            btnBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btnBuscarLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblBuscar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 200, 90, -1));
         jPanel1.add(lblfooter, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 810, 1130, 40));
 
         txtid.setBackground(new java.awt.Color(255, 255, 255));
@@ -464,7 +423,7 @@ public class frmMantenimientoClientes extends javax.swing.JFrame {
 
     private void btnLimpiarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimpiarMouseClicked
         txtid.setText("");
-        txtBuscar.setText("");
+       
         txtNombre.setText("");
         txtApellido.setText("");
         txtTelefono.setText("");
@@ -479,14 +438,6 @@ public class frmMantenimientoClientes extends javax.swing.JFrame {
         newframe.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnRegresarMouseClicked
-
-    private void txtBuscarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtBuscarMousePressed
-
-    }//GEN-LAST:event_txtBuscarMousePressed
-
-    private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtBuscarActionPerformed
 
     private void txtNombreMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNombreMousePressed
 
@@ -619,7 +570,6 @@ public class frmMantenimientoClientes extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Regresar;
     private javax.swing.JPanel btnAgregar;
-    private javax.swing.JPanel btnBuscar;
     private javax.swing.JPanel btnEliminar2;
     private javax.swing.JPanel btnLimpiar;
     private javax.swing.JPanel btnModificar;
@@ -628,8 +578,6 @@ public class frmMantenimientoClientes extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAgregar1;
     private javax.swing.JLabel lblApellido;
-    private javax.swing.JLabel lblBuscar;
-    private javax.swing.JLabel lblBuscartxt;
     private javax.swing.JLabel lblDerecho;
     private javax.swing.JLabel lblDireccion;
     private javax.swing.JLabel lblEliminar;
@@ -642,7 +590,6 @@ public class frmMantenimientoClientes extends javax.swing.JFrame {
     private javax.swing.JLabel lblTelefono;
     private javax.swing.JLabel lblfooter;
     private javax.swing.JSeparator spApellido;
-    private javax.swing.JSeparator spBuscar;
     private javax.swing.JSeparator spDireccion;
     private javax.swing.JSeparator spEmail;
     private javax.swing.JSeparator spNombre;
@@ -650,7 +597,6 @@ public class frmMantenimientoClientes extends javax.swing.JFrame {
     private javax.swing.JSeparator spTelefono1;
     private javax.swing.JTable tblMantenimientoClientes;
     private javax.swing.JTextField txtApellido;
-    private javax.swing.JTextField txtBuscar;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtNombre;
